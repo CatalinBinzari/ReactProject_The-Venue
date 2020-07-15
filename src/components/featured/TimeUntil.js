@@ -24,7 +24,7 @@ class TimeUntil extends Component {
       const days = Math.floor(time / (1000 * 60 * 60 * 24));
       this.setState({ days, hours, minutes, seconds });
     }
-    console.log(time);
+    //console.log(time);
   }
 
   componentDidMount() {
