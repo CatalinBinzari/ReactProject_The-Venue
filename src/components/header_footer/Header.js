@@ -9,7 +9,32 @@ import SideDrawer from "./SideDrawer";
 class Header extends Component {
   state = {
     drawerOpen: false,
+    headerShow: false, //if its false, we will show transparent, if it's true, we will show a color (black)
   };
+
+  componentDidMount() {
+    //when aplication loads after it mounts...
+    window.addEventListener("scroll", this.handleScroll); //when scroll, calls fuction handleScroll
+  }
+
+  componentWillUnmount() {
+    //always remove event listener when we leave page
+  }
+
+  handleScroll = () => {
+    console.log("user scrolling");
+    console.log(window.scrollY);
+    if (window.scrollY > 0) {
+      this.setState({
+        headerShow: true,
+      });
+    } else {
+      this.setState({
+        headerShow: false,
+      });
+    }
+  };
+
   toggleDrawer = (value) => {
     this.setState({
       drawerOpen: value,
@@ -21,7 +46,7 @@ class Header extends Component {
       <AppBar
         position="fixed"
         style={{
-          backgroundColor: "#2f2f2f",
+          backgroundColor: this.state.headerShow ? "#2f2f2f" : "transparent",
           boxShadow: "none",
           padding: "10px 10px",
         }}
